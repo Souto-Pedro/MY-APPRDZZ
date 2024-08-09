@@ -1,0 +1,46 @@
+//Usado para criar e popular o banco de dados
+CREATE DATABASE db1;
+USE db1;
+
+Tabela 'products
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2) NOT NULL
+);
+
+Tabela 'customers'
+CREATE TABLE customers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL
+);
+
+Tabela 'orders'
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customers(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+Inserir Produtos na Tabela products
+INSERT INTO products (name, description, price) VALUES 
+('Product A', 'Description for product A', 10.50),
+('Product B', 'Description for product B', 20.00),
+('Product C', 'Description for product C', 15.75);
+
+Inserir Clientes na Tabela customers
+INSERT INTO customers (name, email) VALUES 
+('John Doe', 'john@example.com'),
+('Jane Smith', 'jane@example.com'),
+('Alice Johnson', 'alice@example.com');
+
+Inserir pedidos na tabela orders
+INSERT INTO orders (customer_id, product_id, quantity) VALUES 
+(1, 1, 2),  -- John Doe comprou 2 unidades do Product A
+(2, 3, 1),  -- Jane Smith comprou 1 unidade do Product C
+(3, 2, 5);  -- Alice Johnson comprou 5 unidades do Product B
